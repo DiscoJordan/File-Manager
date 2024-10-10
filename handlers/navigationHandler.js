@@ -30,15 +30,25 @@ export const navigationHandler = (operation, dirPath) => {
 
       fs.readdir(cwd(), (err, files) => {
         if (err) {
-          throw new Error(err); 
+          throw new Error(err);
         }
+
         files.forEach((file) => {
-          {
-            data.push({ Name: file, Type: path.extname(file)===''?'directory':'file' });
-          }
+          const filePath = path.join(cwd(), file);
+          fs.stat(filePath, (err, stats) => {
+            if (err) {
+              console.error(`Ошибка при обработке ${file}: ${err.message}`);
+              return;
+            }
+            data.push({
+              Name: file,
+              Type: stats.isDirectory() ? 'directory' : 'file'
+            });
+            if (data.length === files.length) {
+              console.table(data);
+            }
+          });
         });
-        console.log(data);
-        console.table(data);
       });
     
     default:

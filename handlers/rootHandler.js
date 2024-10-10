@@ -1,5 +1,6 @@
 import { osHandler } from './osHandler.js';
 import { navigationHandler } from './navigationHandler.js';
+import { basicOperationHandler } from './basicOperationsHandler.js';
 
 
 export const inputHandler = (input) => {
@@ -17,7 +18,7 @@ export const inputHandler = (input) => {
     case "cp":
     case "mv":
     case "rm":
-      console.log("Basic operations with files");
+        basicOperationHandler(operation, args)
       break;
     case "os":
         osHandler(args[0])
