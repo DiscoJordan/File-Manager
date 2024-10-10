@@ -1,6 +1,9 @@
 import { osHandler } from './osHandler.js';
 import { navigationHandler } from './navigationHandler.js';
 import { basicOperationHandler } from './basicOperationsHandler.js';
+// import compressHandler from './compressHandler.js'
+// import decompressHandler from './decompressHandler.js'
+import {hashHandler} from './hashHandler.js'
 
 
 export const inputHandler = (input) => {
@@ -25,14 +28,14 @@ export const inputHandler = (input) => {
       break;
 
     case "hash":
-      console.log("hash info");
+        hashHandler(args[0])
       break;
 
     case "compress":
-      console.log("compress info");
+        compressHandler(args)
       break;
     case "decompress":
-      console.log("decompress info");
+        decompressHandler(args)
       break;
 
     default:

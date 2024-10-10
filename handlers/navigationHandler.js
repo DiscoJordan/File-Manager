@@ -8,29 +8,39 @@ const homeDir = os.homedir();
 export const navigationHandler = (operation, dirPath) => {
   switch (operation) {
     case "up":
-      if (cwd() === homeDir) {
-        console.log("You cant go upper than root folder");
-        break;
-      } else {
-        process.chdir(path.join(cwd(), "../"));
+      try {
+        if (cwd() === homeDir) {
+          console.log("You cant go upper than root folder");
+          break;
+        } else {
+          process.chdir(path.join(cwd(), "../"));
+          break;
+        }
+      } catch (error) {
+        console.error(`Error:  ${error.message}`);
         break;
       }
-    case "cd":
-      if (dirPath.startsWith(homeDir)) {
-        process.chdir(dirPath);
-        break;
-      } else {
-        process.chdir(path.join(cwd(), dirPath));
 
+    case "cd":
+      try {
+        if (dirPath.startsWith(homeDir)) {
+          process.chdir(dirPath);
+          break;
+        } else {
+          process.chdir(path.join(cwd(), dirPath));
+
+          break;
+        }
+      } catch (error) {
+        console.error(`Error:  ${error.message}`);
         break;
       }
 
     case "ls":
       let data = [];
-
       fs.readdir(cwd(), (err, files) => {
         if (err) {
-            console.error(`Error:  ${err.message}`);
+          console.error(`Error:  ${err.message}`);
         }
 
         files.forEach((file) => {
@@ -42,7 +52,7 @@ export const navigationHandler = (operation, dirPath) => {
             }
             data.push({
               Name: file,
-              Type: stats.isDirectory() ? 'directory' : 'file'
+              Type: stats.isDirectory() ? "directory" : "file",
             });
             if (data.length === files.length) {
               console.table(data);
@@ -50,8 +60,9 @@ export const navigationHandler = (operation, dirPath) => {
           });
         });
       });
-    
+      break;
     default:
+      console.error(`Error`);
       break;
   }
 };
