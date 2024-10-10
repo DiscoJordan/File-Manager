@@ -1,6 +1,10 @@
 import readline from "node:readline/promises";
 import { inputHandler } from "./handlers/rootHandler.js";
+import os from 'node:os';
 import { cwd } from 'node:process'
+
+const homeDir = os.homedir();
+process.chdir(homeDir);
 
 const rl = readline.createInterface({
   input: process.stdin,

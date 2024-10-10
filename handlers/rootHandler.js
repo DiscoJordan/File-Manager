@@ -1,8 +1,9 @@
 import { osHandler } from './osHandler.js';
-
+import { cwd } from 'node:process'
 
 export const inputHandler = (input) => {
   const [operation,...args] = input.trim().split(' ')
+
   switch (operation) {
     case "up":
     case "cd":
