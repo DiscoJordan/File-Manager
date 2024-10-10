@@ -30,7 +30,7 @@ export const navigationHandler = (operation, dirPath) => {
 
       fs.readdir(cwd(), (err, files) => {
         if (err) {
-          throw new Error(err);
+            console.error(`Error:  ${err.message}`);
         }
 
         files.forEach((file) => {
