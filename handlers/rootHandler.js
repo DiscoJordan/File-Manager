@@ -1,5 +1,6 @@
 import { osHandler } from './osHandler.js';
-import { cwd } from 'node:process'
+import { navigationHandler } from './navigationHandler.js';
+
 
 export const inputHandler = (input) => {
   const [operation,...args] = input.trim().split(' ')
@@ -8,7 +9,7 @@ export const inputHandler = (input) => {
     case "up":
     case "cd":
     case "ls":
-      console.log("Navigation & working directory (nwd)");
+        navigationHandler(operation,args[0])
       break;
     case "cat":
     case "add":
