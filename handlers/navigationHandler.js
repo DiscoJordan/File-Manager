@@ -26,16 +26,21 @@ export const navigationHandler = (operation, dirPath) => {
       }
 
     case "ls":
-      fs.readdir(cwd(), (err, files) =>
+      let data = [];
+
+      fs.readdir(cwd(), (err, files) => {
+        if (err) {
+          throw new Error(err); 
+        }
         files.forEach((file) => {
           {
-            console.log(file);
-            if (err) {
-              throw new Error(err);
-            }
+            data.push({ Name: file, Type: path.extname(file)===''?'directory':'file' });
           }
-        })
-      );
+        });
+        console.log(data);
+        console.table(data);
+      });
+    
     default:
       break;
   }
