@@ -1,8 +1,8 @@
 import { osHandler } from './osHandler.js';
 import { navigationHandler } from './navigationHandler.js';
 import { basicOperationHandler } from './basicOperationsHandler.js';
-// import compressHandler from './compressHandler.js'
-// import decompressHandler from './decompressHandler.js'
+ import {compressHandler} from './compressHandler.js'
+import {decompressHandler} from './decompressHandler.js'
 import {hashHandler} from './hashHandler.js'
 
 

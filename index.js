@@ -11,7 +11,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-let username = undefined;
+let username = 'Guest';
 const currentLocation = () => {
   console.log(`You are currently in ${cwd()} \n`);
 };
